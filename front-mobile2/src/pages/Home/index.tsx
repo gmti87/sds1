@@ -2,35 +2,40 @@ import React from 'react';
 import { FontAwesome5 as Icon} from '@expo/vector-icons';
 import { Text, StyleSheet, View, Image, Alert } from 'react-native';
 import { RectButton} from 'react-native-gesture-handler';
+import Header from '../../components/Header';
+import { useNavigation } from '@react-navigation/native';
 
 const Home = () => {
+    const navigation = useNavigation();
+
     const handleOnPress = () => {
-        Alert.alert('voce clicou no botão');
+        navigation.navigate('CreateRecord');
     }
 
     return (
-        <>
-            <View style={styles.container}>
+      <>
+        <Header />
+        <View style={styles.container}>
                 <Image 
                     source={require('../../assets/gamer.png')}
                     style={styles.gamerImage}
                 />
                 <Text style={styles.title}>Vote agora!</Text>
                 <Text style={styles.subTitle}>Nos diga qual o seu jogo favorito!</Text>
+        </View>
+        <View style={styles.footer}>
+          <RectButton style={styles.button} onPress={handleOnPress}>
+            <Text style={styles.buttonText}>
+              COLETAR DADOS
+            </Text>
+            <View style={styles.buttonIcon}>
+              <Text>
+                <Icon name="chevron-right" color="#fff" size={25} />
+              </Text>
             </View>
-            <View style={styles.footer}>
-                <RectButton style={styles.button} onPress={handleOnPress}>
-                    <Text style={styles.buttonText}>
-                        COLETAR DADOS
-                    </Text>
-                    <View style={styles.buttonIcon}>
-                        <Text>
-                            <Icon name="chevron-right" color="#fff" size={25} />
-                        </Text>
-                    </View>
-                </RectButton>
-            </View>
-        </>
+          </RectButton>
+        </View>
+      </>
     )
 };
 
@@ -82,7 +87,7 @@ const styles = StyleSheet.create({
       fontFamily: "Play_700Bold",
       fontWeight: 'bold',
       fontSize: 18,
-      color: '#0B1F34',
+      color: '#FFF',
     }
   });
 
